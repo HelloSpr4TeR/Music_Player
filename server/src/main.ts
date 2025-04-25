@@ -7,7 +7,7 @@ const start = async () => {
         const app = await NestFactory.create(AppModule);
 
         app.enableCors({
-            origin: ['https://music-player-pi-murex.vercel.app'],
+            origin: ['https://music-player-pi-murex.vercel.app', 'http://localhost:3000'],
             methods: ['GET', 'POST', 'DELETE'],
         });
 

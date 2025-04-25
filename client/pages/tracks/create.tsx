@@ -26,7 +26,7 @@ const create = () => {
       formData.append('artist', artist.value)
       formData.append('picture', picture)
       formData.append('audio', audio)
-      axios.post('https://servermp-production.up.railway.app/tracks', formData)
+      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/tracks`, formData)
            .then(resp => router.push('/tracks'))
            .catch(e => console.log(e))
     }

@@ -24,7 +24,7 @@ const Player = () => {
 
 const setAudio = () => {
   if (active) {
-    audio.src = 'https://servermp-production.up.railway.app/' + active.audio
+    audio.src = `${process.env.NEXT_PUBLIC_API_URL}/${active.audio}`
     audio.volume = volume / 100
     audio.onloadedmetadata = () => {
       setDuration(Math.ceil(audio.duration))
