@@ -15,7 +15,7 @@ const TrackPage = ({serverTrack}) => {
 
     const addComment = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/tracks/comment', {
+            const response = await axios.post('https://servermp-production.up.railway.app/tracks/comment', {
                 username: username.value,
                 text: text.value,
                 trackId: track._id
@@ -39,7 +39,7 @@ const TrackPage = ({serverTrack}) => {
             К списку
         </Button>
         <Grid2 container style={{margin: '20px 0'}}>
-            <img src={'http://localhost:5000/' + track.picture} width={200} height={200}/>
+            <img src={'https://servermp-production.up.railway.app/' + track.picture} width={200} height={200}/>
             <div style={{marginLeft: 30}}>
                 <h1>Название трека - {track.name}</h1>
                 <h1>Исполнитель - {track.artist}</h1>
@@ -79,7 +79,7 @@ const TrackPage = ({serverTrack}) => {
 export default TrackPage
 
 export const getServerSideProps: GetServerSideProps = async ({params}) => {
-    const response = await axios.get('http://localhost:5000/tracks/' + params.id)
+    const response = await axios.get('https://servermp-production.up.railway.app/tracks/' + params.id)
     return {
         props: {
             serverTrack: response.data
