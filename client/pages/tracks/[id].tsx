@@ -36,6 +36,7 @@ const TrackPage = ({ serverTrack }) => {
                 variant="outlined"
                 style={{ fontSize: 20 }}
                 onClick={() => router.push('/tracks')}
+                className={styles.button}
             >
                 К списку
             </Button>
@@ -60,7 +61,14 @@ const TrackPage = ({ serverTrack }) => {
                             label="Ваше имя"
                             {...username}
                             fullWidth
-                            className={styles.commentInput}
+                            className={`${styles.commentInput} mui-textfield`}
+                            sx={{
+                                '& .MuiInputBase-root': {
+                                    backgroundColor: '#ffffff',
+                                    borderRadius: '10px',
+                                    padding: '10px',
+                                }
+                            }}
                         />
                         <TextField
                             label="Комментарий"
@@ -68,9 +76,27 @@ const TrackPage = ({ serverTrack }) => {
                             fullWidth
                             multiline
                             rows={4}
-                            className={styles.commentInput}
+                            className={`${styles.commentInput} mui-textfield`}
+                            sx={{
+                                '& .MuiInputBase-root': {
+                                    backgroundColor: '#ffffff',
+                                    borderRadius: '10px',
+                                    padding: '10px',
+                                }
+                            }}
                         />
-                        <Button className={styles.button} onClick={addComment}>Отправить</Button>
+                        <Button
+                            onClick={addComment}
+                            className={styles.button}
+                            sx={{
+                                backgroundColor: '#4a90e2',
+                                '&:hover': {
+                                    backgroundColor: '#357ABD',
+                                },
+                            }}
+                        >
+                            Отправить
+                        </Button>
                     </Grid2>
                 </div>
                 <div className={styles.commentList}>
