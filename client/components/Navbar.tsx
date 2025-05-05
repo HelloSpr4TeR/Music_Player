@@ -18,9 +18,9 @@ import { Album, Home, QueueMusic } from '@mui/icons-material';
 
 
 const menuItems = [
-    {text: 'Главная', href: '/'},
-    {text: 'Список треков', href: '/tracks'},
-    {text: 'Список альбомов', href: '/albums'},
+  { text: 'Главная', href: '/' },
+  { text: 'Список треков', href: '/tracks' },
+  { text: 'Список альбомов', href: '/albums' },
 ]
 
 export default function Navbar() {
@@ -55,8 +55,20 @@ export default function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-          SoundNest 🎧
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            onClick={() => router.push('/tracks')}
+            sx={{
+              cursor: 'pointer',
+              userSelect: 'none',
+              transition: 'color 0.3s',
+              '&:hover': {
+                color: '#90caf9',
+              },
+            }}>
+            SoundNest 🎧
           </Typography>
         </Toolbar>
       </AppBar>
@@ -64,22 +76,47 @@ export default function Navbar() {
         variant="persistent"
         anchor="left"
         open={open}
+        sx={{
+          '& .MuiDrawer-paper': {
+            backgroundImage: 'url("/images/sidebar-bg.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            color: '#fff',
+          },
+        }}
       >
         <div>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <List>
+        <List sx={{ padding: 0 }}>
           {menuItems.map(({ text, href }, index) => (
-            <ListItem key={href}>
-              <ListItemButton onClick={() => router.push(href)}>
-                <ListItemIcon>
-                  {index === 0 ? <Home/> : ""}
-                  {index === 1 ? <QueueMusic/> : ""}
-                  {index === 2 ? <Album/> : ""}
+            <ListItem key={href} disablePadding sx={{ marginBottom: 1 }}>
+              <ListItemButton
+                onClick={() => router.push(href)}
+                sx={{
+                  padding: '10px 20px',
+                  borderRadius: '8px',
+                  '&:hover': {
+                    backgroundColor: '#f0f0f0',
+                  },
+                }}
+              >
+                <ListItemIcon sx={{ minWidth: '40px' }}>
+                  {index === 0 ? <Home sx={{ color: '#007bff' }} /> : ""}
+                  {index === 1 ? <QueueMusic sx={{ color: '#007bff' }} /> : ""}
+                  {index === 2 ? <Album sx={{ color: '#007bff' }} /> : ""}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText
+                  primary={text}
+                  sx={{
+                    fontWeight: 500,
+                    color: '#333',
+                    fontSize: '16px',
+                  }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
