@@ -12,44 +12,6 @@ const Index = () => {
         <h3>Исследуйте, создавайте и наслаждайтесь лучшей музыкой со всего мира.</h3>
         <p>SoundNest — это место, где музыка оживает. Открывайте новые треки, делитесь своими плейлистами и находите вдохновение в ритме.</p>
       </div>
-      
-      <style jsx>
-        {`
-          h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #800080;
-          }
-          h1 span {
-            color: #ffcc00;
-          }
-          h3 {
-            font-size: 1.5rem;
-            color: #A17F7F;
-            margin-bottom: 10px;
-          }
-          p {
-            font-size: 1.2rem;
-            color: #A17F4D;
-            max-width: 600px;
-          }
-          .explore-btn {
-            margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #fff;
-            background: #ff5500;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-          }
-          .explore-btn:hover {
-            background: #ff7700;
-          }
-        `}
-      </style>
     </MainLayout>
   );
 };

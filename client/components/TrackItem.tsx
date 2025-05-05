@@ -2,9 +2,10 @@ import { ITrack } from '@/types/track'
 import { Card, Grid2, IconButton } from '@mui/material';
 import React from 'react'
 import styles from '../styles/TrackItem.module.scss'
-import { Delete, Pause, PlayArrow } from '@mui/icons-material';
+import { Pause } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import { useActions } from '@/hooks/useActions';
+import { FaPlayCircle } from 'react-icons/fa';
 
 interface TrackItemProps {
     track: ITrack;
@@ -23,9 +24,10 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
 
     return (
         <Card className={styles.track} onClick={() => router.push('/tracks/' + track._id)}>
+            <div className={styles.mediaContainer}>
             <IconButton onClick={play}>
                 {!active
-                    ? <PlayArrow />
+                    ? <FaPlayCircle size={30}/>
                     : <Pause />
                 }
             </IconButton>
@@ -33,15 +35,13 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
                 width={70}
                 height={70}
                 src={`${process.env.NEXT_PUBLIC_API_URL}/${track.picture}`}
+                alt={track.name}
             />
-            <Grid2 container direction='column' style={{ width: 200, margin: '0 20px' }}>
+            </div>
+            <Grid2 container direction='column' className={styles.info}>
                 <div>{track.name}</div>
                 <div style={{ fontSize: 12, color: 'gray' }}>{track.artist}</div>
             </Grid2>
-            {active && <div>02:42 / 03:22</div>}
-            <IconButton onClick={e => e.stopPropagation()} style={{ marginLeft: 'auto' }}>
-                <Delete />
-            </IconButton>
         </Card>
     )
 }

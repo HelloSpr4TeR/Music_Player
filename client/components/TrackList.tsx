@@ -4,7 +4,8 @@ import TrackItem from "./TrackItem"
 
 
 interface TrackListProps {
-    tracks: ITrack[]
+    tracks: ITrack[];
+    className?: string;
 }
 
 const TrackList: React.FC<TrackListProps> = ({tracks}) => {

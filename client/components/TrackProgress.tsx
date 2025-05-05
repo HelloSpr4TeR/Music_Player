@@ -1,27 +1,23 @@
-import React from 'react'
-
 interface TrackProgressProps {
-    left: number;
-    right: number;
-    onChange: (e) => void
+  left: number;
+  right: number;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 }
 
-const TrackProgress: React.FC<TrackProgressProps> =
-({
-    left, right, onChange
-}) => {
+const TrackProgress: React.FC<TrackProgressProps> = ({ left, right, onChange, className }) => {
   return (
-    <div style={{display: 'flex'}}>
-        <input
+    <div className={className} style={{ width: '100%' }}>
+      <input
         type="range"
-        min={0}
+        min="0"
         max={right}
         value={left}
         onChange={onChange}
-        />
-        <div>{left} / {right}</div>
+        style={{ width: '100%' }}
+      />
     </div>
-  )
+  );
 }
 
-export default TrackProgress
+export default TrackProgress;

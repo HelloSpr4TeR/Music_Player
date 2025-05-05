@@ -6,6 +6,7 @@ import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import styles from '../../styles/TrackPage.module.scss'
 
 const TrackPage = ({ serverTrack }) => {
     const [track, setTrack] = useState<ITrack>(serverTrack)
@@ -33,48 +34,53 @@ const TrackPage = ({ serverTrack }) => {
         >
             <Button
                 variant="outlined"
-                style={{ fontSize: 32 }}
+                style={{ fontSize: 20 }}
                 onClick={() => router.push('/tracks')}
             >
                 К списку
             </Button>
-            <Grid2 container style={{ margin: '20px 0' }}>
-                <img
-                    src={`${process.env.NEXT_PUBLIC_API_URL}/${track.picture}`}
-                    width={200}
-                    height={200}
-                />
-                <div style={{ marginLeft: 30 }}>
-                    <h1>Название трека - {track.name}</h1>
-                    <h1>Исполнитель - {track.artist}</h1>
-                    <h1>Прослушиваний - {track.listens}</h1>
-                </div>
-            </Grid2>
-            <h1>Слова в треке</h1>
-            <p>{track.text}</p>
-            <h1>Комментарии</h1>
-            <Grid2 container>
-                <TextField
-                    label="Ваше имя"
-                    {...username}
-                    fullWidth
-                />
-                <TextField
-                    label="Комментарий"
-                    {...text}
-                    fullWidth
-                    multiline
-                    rows={4}
-                />
-                <Button onClick={addComment}>Отправить</Button>
-            </Grid2>
-            <div>
-                {track.comments.map(comment =>
-                    <div key={comment._id}>
-                        <div>Автор - {comment.username}</div>
-                        <div>Комментарий - {comment.text}</div>
+            <div className={styles.trackPage}>
+                <Grid2 container className={styles.trackInfo}>
+                    <img
+                        src={`${process.env.NEXT_PUBLIC_API_URL}/${track.picture}`}
+                        className={styles.trackImage}
+                    />
+                    <div className={styles.trackDetails}>
+                        <h1>Название трека - {track.name}</h1>
+                        <h1>Исполнитель - {track.artist}</h1>
+                        <h1>Прослушиваний - {track.listens}</h1>
                     </div>
-                )}
+                </Grid2>
+                <h1>Слова в треке</h1>
+                <p>{track.text}</p>
+                <h1>Комментарии</h1>
+                <div className={styles.commentSection}>
+                    <Grid2 container>
+                        <TextField
+                            label="Ваше имя"
+                            {...username}
+                            fullWidth
+                            className={styles.commentInput}
+                        />
+                        <TextField
+                            label="Комментарий"
+                            {...text}
+                            fullWidth
+                            multiline
+                            rows={4}
+                            className={styles.commentInput}
+                        />
+                        <Button className={styles.button} onClick={addComment}>Отправить</Button>
+                    </Grid2>
+                </div>
+                <div className={styles.commentList}>
+                    {track.comments.map(comment =>
+                        <div key={comment._id} className={styles.commentItem}>
+                            <div>Автор - {comment.username}</div>
+                            <div>Комментарий - {comment.text}</div>
+                        </div>
+                    )}
+                </div>
             </div>
         </MainLayout>
     )

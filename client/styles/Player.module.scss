@@ -1,11 +1,64 @@
-
 .player {
-    height: 60px;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-    background-color: lightgray;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.img {
+  margin-left: 15px;
+  width: 50px;
+  height: 50px;
+}
+
+.trackInfo {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.volumeWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.trackProgress {
+  width: 100%;
+  background-color: transparent;
+}
+
+.progressWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 10px;
+  position: absolute;
+  bottom: 45px;
+  left: 0;
+  z-index: 3;
+}
+
+@media (max-width: 600px) {
+  .img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .volumeWrapper {
+    display: none;
+  }
 }

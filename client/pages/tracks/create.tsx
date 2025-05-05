@@ -6,6 +6,7 @@ import { Button, Grid2, TextField } from '@mui/material'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import styles from '../../styles/CreatePage.module.scss'
 
 const create = () => {
   const [activeStep, setActiveStep] = useState(0)
@@ -18,7 +19,7 @@ const create = () => {
 
   const next = () => {
     if (activeStep !== 2) {
-    setActiveStep(prev => prev + 1)
+      setActiveStep(prev => prev + 1)
     } else {
       const formData = new FormData()
       formData.append('name', name.value)
@@ -31,49 +32,52 @@ const create = () => {
            .catch(e => console.log(e))
     }
   }
+  
   const back = () => {
     setActiveStep(prev => prev - 1)
   }
 
   return (
     <MainLayout>
-      <StepWrapper activeStep={activeStep}>
-        {activeStep === 0 &&
-        <Grid2 container direction={"column"} style={{padding: 20}}>
-          <TextField
-          {...name}
-          style={{marginTop: 10}}
-          label={"Название трека"}
-          />
-          <TextField
-          {...artist}
-          style={{marginTop: 10}}
-          label={"Имя исполнителя"}
-          />
-          <TextField
-          {...text}
-          style={{marginTop: 10}}
-          label={"Слова к треку"}
-          multiline
-          rows={3}
-          />
-        </Grid2>
-        }
-        {activeStep === 1 &&
-        <FileUpload setFile={setPicture} accept="image/*">
-          <Button>Загрузить изображение</Button>
-        </FileUpload>
-        }
-        {activeStep === 2 &&
-        <FileUpload setFile={setAudio} accept="audio/*">
-        <Button>Загрузить аудио</Button>
-      </FileUpload>
-        }
-      </StepWrapper>
-      <Grid2 container justifyContent='space-between'>
-        <Button disabled={activeStep === 0} onClick={back}>Назад</Button>
-        <Button onClick={next}>Далее</Button>
-      </Grid2>
+      <div className={styles.createPage}>
+        <StepWrapper activeStep={activeStep} className={styles.stepWrapper}>
+          {activeStep === 0 &&
+          <Grid2 container direction={"column"}>
+            <TextField
+              {...name}
+              className={styles.textField}
+              label={"Название трека"}
+            />
+            <TextField
+              {...artist}
+              className={styles.textField}
+              label={"Имя исполнителя"}
+            />
+            <TextField
+              {...text}
+              className={styles.textField}
+              label={"Слова к треку"}
+              multiline
+              rows={3}
+            />
+          </Grid2>
+          }
+          {activeStep === 1 &&
+          <FileUpload setFile={setPicture} accept="image/*">
+            <Button className={styles.fileUploadButton}>Загрузить изображение</Button>
+          </FileUpload>
+          }
+          {activeStep === 2 &&
+          <FileUpload setFile={setAudio} accept="audio/*">
+            <Button className={styles.fileUploadButton}>Загрузить аудио</Button>
+          </FileUpload>
+          }
+        </StepWrapper>
+        <div className={styles.stepsNavigation}>
+          <Button disabled={activeStep === 0} onClick={back} className={styles.button}>Назад</Button>
+          <Button onClick={next} className={styles.button}>Далее</Button>
+        </div>
+      </div>
     </MainLayout>
   )
 }

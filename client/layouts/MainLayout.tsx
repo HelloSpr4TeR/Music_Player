@@ -19,7 +19,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, title, description, k
       <meta name="description" content={`Музыкальная площадка. Здесь каждый может оставить свой трек и стать знаменитым.` + description}/>
       <meta name="robots" content="index, follow"/>
       <meta name="keywords" content={keywords || "Музыка, треки, артисты"}/>
-      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       </Head>
       <Navbar/>
       <Container style={{ marginTop: '90px' }}>

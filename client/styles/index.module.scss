@@ -1,17 +1,74 @@
+$primary-color: #2d3e58;
+$accent-color: #4a90e2;
+$light-color: #f0f4f8;
+$text-color: #fff;
+$heading-color: #ffffff;
 
 .hero {
-    margin-top: 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-  }
-  
+  position: relative;
+  padding: 50px 20px;
+  background-color: $primary-color;
+  color: $text-color;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 .heroImg {
-    max-width: 500px;
-    max-height: 500px;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 20px 0;
+  color: $heading-color;
+  span {
+    color: $accent-color;
   }
+}
+
+.hero h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: $light-color;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: $light-color;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 30px 10px;
+  }
+
+  .heroImg {
+    width: 90%;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero h3 {
+    font-size: 1.3rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
