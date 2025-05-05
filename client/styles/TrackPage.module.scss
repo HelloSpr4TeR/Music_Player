@@ -49,7 +49,7 @@ $button-color: #ffffff;
 }
 
 .commentInput {
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
 }
 
 .commentList {
@@ -70,8 +70,8 @@ $button-color: #ffffff;
 }
 
 .button {
-  background-color: $accent-color;
-  color: $button-color;
+  background-color: $accent-color !important;
+  color: $button-color !important;
   font-size: 1rem;
   padding: 10px 20px;
   border-radius: 5px;
@@ -81,7 +81,7 @@ $button-color: #ffffff;
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: darken($accent-color, 10%);
+    background-color: darken($accent-color, 10%) !important;
   }
 }
 
@@ -106,10 +106,6 @@ $button-color: #ffffff;
 
   .trackDetails p {
     font-size: 1rem;
-  }
-
-  .commentInput {
-    margin-bottom: 20px;
   }
 
   .button {
