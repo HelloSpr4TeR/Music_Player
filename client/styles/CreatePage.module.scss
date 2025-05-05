@@ -29,6 +29,7 @@
     }
     background-color: #007bff !important;
     color: white !important;
+    text-transform: none !important;
 }
 
 .fileUploadButton {
@@ -40,6 +41,7 @@
     &:hover {
         background-color: #0056b3;
     }
+    text-transform: none !important;
 }
 
 .stepsNavigation {
