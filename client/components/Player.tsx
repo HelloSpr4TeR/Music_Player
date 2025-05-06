@@ -1,6 +1,6 @@
 import { Close, Pause, PlayArrow, VolumeUp } from '@mui/icons-material'
 import { Grid2, IconButton } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styles from '../styles/Player.module.scss'
 import TrackProgress from './TrackProgress'
 import { useActions } from '@/hooks/useActions'
@@ -20,10 +20,9 @@ const Player = () => {
   useEffect(() => {
     if (!audio) {
       audio = new Audio();
-    } else {
-      setAudio();
-      play();
     }
+
+    setAudio();
 
     return () => {
       if (audio) {
@@ -35,19 +34,27 @@ const Player = () => {
 
   const setAudio = () => {
     if (active) {
-      audio.src = `${process.env.NEXT_PUBLIC_API_URL}/${active.audio}`
-      audio.volume = volume / 100
+      audio.src = `${process.env.NEXT_PUBLIC_API_URL}/${active.audio}`;
+      audio.volume = volume / 100;
+
       audio.onloadedmetadata = () => {
-        setDuration(Math.ceil(audio.duration))
-      }
+        setDuration(Math.ceil(audio.duration));
+        audio.play().then(() => {
+          playTrack();
+        }).catch((err) => {
+          console.error("Playback error:", err);
+        });
+      };
+
       audio.ontimeupdate = () => {
-        setCurrentTime(Math.ceil(audio.currentTime))
-      }
+        setCurrentTime(Math.ceil(audio.currentTime));
+      };
+
+      audio.onended = () => {
+        playNextTrack();
+      };
     }
-    audio.onended = () => {
-      playNextTrack();
-    };
-  }
+  };
 
   const play = () => {
     if (pause) {
