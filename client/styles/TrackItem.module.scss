@@ -1,16 +1,16 @@
 .track {
-  margin: 20px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  border-radius: 12px;
-  background-image: url('/images/Item.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1);
-  transition: border 0.3s ease;
-  border: 2px solid transparent;
+  margin: 20px !important;
+  padding: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  border-radius: 12px !important;
+  background-image: url('/images/Item.jpg') !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1) !important;
+  transition: border 0.3s ease !important;
+  border: 2px solid transparent !important;
 
   &:hover {
     background: #e0efff;
