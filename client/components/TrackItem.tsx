@@ -16,31 +16,18 @@ interface TrackItemProps {
 
 const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
     const router = useRouter()
-    const { playTrack, pauseTrack, setActiveTrack } = useActions()
+    const { playTrack, setActiveTrack } = useActions()
     const { active: currentTrack, pause } = useTypedSelector(state => state.player)
     const isCurrent = currentTrack?._id === track._id
-
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
+    const isButtonDisabled = isCurrent
 
     const play = (e: React.MouseEvent) => {
         e.stopPropagation()
-
         if (isButtonDisabled) return;
 
-        if (currentTrack?._id !== track._id) {
-            setIsButtonDisabled(true)
-            setActiveTrack(track)
-            playTrack()
-        } else {
-            pause ? playTrack() : pauseTrack()
-        }
+        setActiveTrack(track)
+        playTrack()
     }
-
-    React.useEffect(() => {
-        if (currentTrack?._id !== track._id) {
-            setIsButtonDisabled(false)
-        }
-    }, [currentTrack, track._id])
 
     return (
         <Card
@@ -49,8 +36,8 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
             <div className={styles.mediaContainer}>
                 <IconButton onClick={play} disabled={isButtonDisabled}>
                     {!isCurrent || pause
-                        ? <FaPlayCircle size={30} />
-                        : <FaPauseCircle size={30} />
+                        ? <FaPlayCircle className={styles.faPlayPause} />
+                        : <FaPauseCircle className={styles.faPlayPause} />
                     }
                 </IconButton>
                 <img

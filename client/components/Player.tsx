@@ -78,8 +78,8 @@ const Player = () => {
 
   const handleClose = () => {
     if (audio) {
-      pauseTrack();
       audio.pause()
+      pauseTrack();
     }
 
     setActiveTrack(null);

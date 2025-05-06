@@ -16,8 +16,11 @@ $button-color: #ffffff;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  background: linear-gradient(145deg, #ffffff, #ffffff);
+  gap: 10px;
+  background-image: url('/images/Back.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(25, 118, 210, 0.15);
   transition: all 0.3s ease;
@@ -43,6 +46,9 @@ $button-color: #ffffff;
 
 .searchField {
   margin-top: 8px;
+  padding: 15px;
+  margin-bottom: -20px;
+  margin-top: -20px;
 
   input {
     background-color: #e3f2fd;
@@ -62,13 +68,13 @@ $button-color: #ffffff;
 .button {
   background-color: $accent-color !important;
   color: $button-color !important;
-  font-size: 1rem;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-top: 15px;
-  cursor: pointer;
-  border: none;
-  transition: background-color 0.3s;
+  font-size: 1rem !important;
+  padding: 5px 10px !important;
+  border-radius: 5px !important;
+  margin-top: 15px !important;
+  cursor: pointer !important;
+  border: none !important;
+  transition: background-color 0.3s !important;
 
   &:hover {
     background-color: darken($accent-color, 10%) !important;
@@ -88,10 +94,12 @@ $button-color: #ffffff;
   }
 
   .searchField {
-    margin-top: 4px;
+    margin-top: -30px;
+    margin-bottom: -30px;
+    padding: 15px;
   }
 
   .button {
-    margin-top: 4px;
+    margin-top: 0px;
   }
 }
