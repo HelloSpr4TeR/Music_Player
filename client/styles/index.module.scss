@@ -20,7 +20,7 @@ $heading-color: #ffffff;
 
 .heroImg {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   height: auto;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -32,6 +32,7 @@ $heading-color: #ffffff;
   font-weight: bold;
   margin: 20px 0;
   color: $heading-color;
+
   span {
     color: $accent-color;
   }

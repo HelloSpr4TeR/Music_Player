@@ -6,12 +6,16 @@ import TrackProgress from './TrackProgress'
 import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import VolumeProgress from './VolumeProgress'
+import { useMediaQuery } from '@mui/material';
+
 
 let audio;
 
 const Player = () => {
   const { pause, volume, active, duration, currentTime } = useTypedSelector(state => state.player)
   const { pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack, clearActiveTrack } = useActions()
+
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
 
   useEffect(() => {
     if (!audio) {
@@ -76,6 +80,10 @@ const Player = () => {
     return null
   }
 
+  const truncate = (text: string, maxLength: number): string => {
+    return text.length > maxLength ? text.slice(0, maxLength) + "…" : text;
+  };
+
   return (
     <div className={styles.player}>
       <div className={styles.controls}>
@@ -88,8 +96,12 @@ const Player = () => {
           alt={active.name}
         />
         <Grid2 container direction='column' style={{ width: 200, margin: '0 20px' }} className={styles.trackInfo}>
-          <div className={styles.truncatedText} style={{ fontSize: 15 }}>{active?.name}</div>
-          <div style={{ fontSize: 12, color: 'gray' }}>{active?.artist}</div>
+          <div className={styles.truncatedText} style={{ fontSize: 15 }}>
+            {active?.name ? (isSmallScreen ? truncate(active.name, 18) : active.name) : ""}
+          </div>
+          <div style={{ fontSize: 12, color: 'gray' }}>
+            {active?.artist ? (isSmallScreen ? truncate(active.artist, 20) : active.artist) : ""}
+          </div>
         </Grid2>
         <div className={styles.volumeWrapper}>
           <VolumeUp style={{ marginLeft: 'auto' }} />

@@ -7,11 +7,12 @@ export const fetchTracks = () => {
     return async (dispatch: Dispatch<TrackAction>) => {
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/tracks`)
-            dispatch({type: TrackActionTypes.FETCH_TRACKS, payload: response.data})
+            dispatch({ type: TrackActionTypes.FETCH_TRACKS, payload: response.data })
         } catch (e) {
             dispatch({
                 type: TrackActionTypes.FETCH_TRACKS_ERROR,
-                payload: 'Произошла ошибка при загрузке треков'})
+                payload: 'Произошла ошибка при загрузке треков'
+            })
         }
     }
 }
@@ -20,11 +21,12 @@ export const searchTracks = (query: string) => {
     return async (dispatch: Dispatch<TrackAction>) => {
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/tracks/search?query=${query}`)
-            dispatch({type: TrackActionTypes.FETCH_TRACKS, payload: response.data})
+            dispatch({ type: TrackActionTypes.FETCH_TRACKS, payload: response.data })
         } catch (e) {
             dispatch({
                 type: TrackActionTypes.FETCH_TRACKS_ERROR,
-                payload: 'Произошла ошибка при загрузке треков'})
+                payload: 'Произошла ошибка при загрузке треков'
+            })
         }
     }
 }
