@@ -1,11 +1,13 @@
 import { ITrack } from '@/types/track'
 import { Card, Grid2, IconButton } from '@mui/material';
-import React from 'react'
+import React, { useState } from 'react'
 import styles from '../styles/TrackItem.module.scss'
-import { Pause } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import { useActions } from '@/hooks/useActions';
-import { FaPlayCircle } from 'react-icons/fa';
+import { FaPauseCircle, FaPlayCircle } from 'react-icons/fa';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
+import clsx from 'clsx';
+
 
 interface TrackItemProps {
     track: ITrack;
@@ -15,28 +17,48 @@ interface TrackItemProps {
 const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
     const router = useRouter()
     const { playTrack, pauseTrack, setActiveTrack } = useActions()
+    const { active: currentTrack, pause } = useTypedSelector(state => state.player)
+    const isCurrent = currentTrack?._id === track._id
+
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false)
 
     const play = (e: React.MouseEvent) => {
         e.stopPropagation()
-        setActiveTrack(track)
-        playTrack()
+        
+        if (isButtonDisabled) return;
+
+        if (currentTrack?._id !== track._id) {
+            setIsButtonDisabled(true)
+            setActiveTrack(track)
+            playTrack()
+        } else {
+            pause ? playTrack() : pauseTrack()
+        }
     }
 
+    React.useEffect(() => {
+        if (currentTrack?._id !== track._id) {
+            setIsButtonDisabled(false)
+        }
+    }, [currentTrack, track._id])
+
     return (
-        <Card className={styles.track} onClick={() => router.push('/tracks/' + track._id)}>
+        <Card
+            className={clsx(styles.track, { [styles.active]: active })}
+            onClick={() => router.push('/tracks/' + track._id)}>
             <div className={styles.mediaContainer}>
-            <IconButton onClick={play}>
-                {!active
-                    ? <FaPlayCircle size={30}/>
-                    : <Pause />
-                }
-            </IconButton>
-            <img
-                width={70}
-                height={70}
-                src={`${process.env.NEXT_PUBLIC_API_URL}/${track.picture}`}
-                alt={track.name}
-            />
+                <IconButton onClick={play} disabled={isButtonDisabled}>
+                    {!isCurrent || pause
+                        ? <FaPlayCircle size={30} />
+                        : <FaPauseCircle size={30} />
+                    }
+                </IconButton>
+                <img
+                    width={70}
+                    height={70}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}/${track.picture}`}
+                    alt={track.name}
+                />
             </div>
             <Grid2 container direction='column' className={styles.info}>
                 <div>{track.name}</div>

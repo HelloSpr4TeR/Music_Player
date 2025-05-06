@@ -16,8 +16,12 @@ export enum PlayerActionTypes {
     SET_DURATION = "SET_DURATION",
     SET_CURRENT_TIME = "SET_CURRENT_TIME",
     SET_VOLUME = "SET_VOLUME",
+    CLEAR_ACTIVE = "CLEAR_ACTIVE",
 }
 
+interface ClearActiveAction {
+    type: PlayerActionTypes.CLEAR_ACTIVE;
+}
 interface PlayAction {
     type: PlayerActionTypes.PLAY
 }
@@ -42,9 +46,10 @@ interface SetCurrentTimeAction {
 }
 
 export type PlayerAction =
-PlayAction
-| PauseAction
-| SetActiveAction
-| SetDurationAction
-| SetVolumeAction
-| SetCurrentTimeAction
+    PlayAction
+    | PauseAction
+    | SetActiveAction
+    | SetDurationAction
+    | SetVolumeAction
+    | SetCurrentTimeAction
+    | ClearActiveAction;

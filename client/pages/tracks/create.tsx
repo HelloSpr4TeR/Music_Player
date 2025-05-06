@@ -42,7 +42,7 @@ const Create = () => {
       <div className={styles.createPage}>
         <StepWrapper activeStep={activeStep} className={styles.stepWrapper}>
           {activeStep === 0 && (
-            <Box display="flex" flexDirection="column" gap={2} position="relative" sx={{ mt: 1 }}>
+            <Box display="flex" flexDirection="column" gap={2} position="relative" sx={{ mt: 1, width: '95%', mx: 'auto' }}>
               <TextField {...name} label="Название трека" fullWidth />
               <TextField {...artist} label="Имя исполнителя" fullWidth />
               <TextField {...text} label="Слова к треку" multiline rows={3} fullWidth />

@@ -61,4 +61,10 @@
   .volumeWrapper {
     display: none;
   }
+
+  .truncatedText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -27,6 +27,24 @@ export default function Navbar() {
   const [open, setOpen] = React.useState(false);
   const router = useRouter()
 
+  const drawerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        drawerRef.current &&
+        !drawerRef.current.contains(event.target as Node) &&
+        open
+      ) {
+        handleDrawerClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [open]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -73,6 +91,7 @@ export default function Navbar() {
         </Toolbar>
       </AppBar>
       <Drawer
+        ref={drawerRef}
         variant="persistent"
         anchor="left"
         open={open}
