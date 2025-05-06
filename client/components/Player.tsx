@@ -13,7 +13,7 @@ let audio;
 
 const Player = () => {
   const { pause, volume, active, duration, currentTime } = useTypedSelector(state => state.player)
-  const { pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack, clearActiveTrack } = useActions()
+  const { pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack, clearActiveTrack, playNextTrack } = useActions()
 
   const isSmallScreen = useMediaQuery('(max-width:600px)');
 
@@ -44,6 +44,9 @@ const Player = () => {
         setCurrentTime(Math.ceil(audio.currentTime))
       }
     }
+    audio.onended = () => {
+      playNextTrack();
+    };
   }
 
   const play = () => {

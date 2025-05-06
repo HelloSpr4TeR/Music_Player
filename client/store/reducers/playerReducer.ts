@@ -6,6 +6,7 @@ const initialState: PlayerState = {
   active: null,
   volume: 50,
   pause: true,
+  playlist: [], // ⬅️ Добавили
 };
 
 export const playerReducer = (state = initialState, action: PlayerAction): PlayerState => {
@@ -24,6 +25,29 @@ export const playerReducer = (state = initialState, action: PlayerAction): Playe
       return { ...state, active: action.payload, duration: 0, currentTime: 0 };
     case PlayerActionTypes.CLEAR_ACTIVE:
       return { ...state, active: null, pause: true, currentTime: 0, duration: 0 };
+    case PlayerActionTypes.SET_PLAYLIST:
+      return { ...state, playlist: action.payload };
+    case PlayerActionTypes.PLAY_NEXT: {
+      if (!state.active || !state.playlist.length) return state;
+
+      const currentIndex = state.playlist.findIndex(track => track._id === state.active!._id);
+      const nextTrack = state.playlist[currentIndex + 1];
+
+      if (nextTrack) {
+        return {
+          ...state,
+          active: nextTrack,
+          currentTime: 0,
+          duration: 0,
+          pause: false,
+        };
+      }
+
+      return {
+        ...state,
+        pause: true,
+      };
+    }
     default:
       return state;
   }

@@ -24,7 +24,7 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
 
     const play = (e: React.MouseEvent) => {
         e.stopPropagation()
-        
+
         if (isButtonDisabled) return;
 
         if (currentTrack?._id !== track._id) {

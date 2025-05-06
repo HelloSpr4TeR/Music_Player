@@ -7,6 +7,7 @@ export interface PlayerState {
     duration: number;
     currentTime: number;
     pause: boolean;
+    playlist: ITrack[]; // ➕ Новый ключ
 }
 
 export enum PlayerActionTypes {
@@ -17,6 +18,8 @@ export enum PlayerActionTypes {
     SET_CURRENT_TIME = "SET_CURRENT_TIME",
     SET_VOLUME = "SET_VOLUME",
     CLEAR_ACTIVE = "CLEAR_ACTIVE",
+    SET_PLAYLIST = 'SET_PLAYLIST', // ➕ Новый тип действия
+    PLAY_NEXT = 'PLAY_NEXT', // ➕ Новый тип действия
 }
 
 interface ClearActiveAction {
@@ -44,6 +47,14 @@ interface SetCurrentTimeAction {
     type: PlayerActionTypes.SET_CURRENT_TIME,
     payload: number;
 }
+interface SetPlaylistAction {
+    type: PlayerActionTypes.SET_PLAYLIST;
+    payload: ITrack[];
+}
+
+interface PlayNextAction {
+    type: PlayerActionTypes.PLAY_NEXT;
+}
 
 export type PlayerAction =
     PlayAction
@@ -52,4 +63,6 @@ export type PlayerAction =
     | SetDurationAction
     | SetVolumeAction
     | SetCurrentTimeAction
-    | ClearActiveAction;
+    | ClearActiveAction
+    | SetPlaylistAction
+    | PlayNextAction;
