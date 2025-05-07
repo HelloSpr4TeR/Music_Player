@@ -8,7 +8,7 @@
   background-size: cover !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
-  background-clip: border-box !important;
+  background-clip: margin-box !important;
   box-shadow: 0 4px 10px rgba(0, 123, 255, 0.1);
   transition: border 0.3s ease;
   border: 3px solid transparent;
@@ -89,5 +89,5 @@
 }
 
 .active {
-  border: 3px solid #1976d2;
+  border: 5px solid #1976d2 !important;
 }
