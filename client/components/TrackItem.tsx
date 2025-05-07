@@ -31,6 +31,11 @@ const TrackItem: React.FC<TrackItemProps> = ({ track, active = false }) => {
 
     return (
         <Card
+            sx={{
+                backgroundImage: 'url("/images/Item.jpg")',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+            }}
             className={clsx(styles.track, { [styles.active]: active })}
             onClick={() => router.push('/tracks/' + track._id)}>
             <div className={styles.mediaContainer}>
