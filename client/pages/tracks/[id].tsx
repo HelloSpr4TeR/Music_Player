@@ -33,8 +33,7 @@ const TrackPage = ({ serverTrack }) => {
             keywords={`Музыка, артисты, ${track.name}, ${track.artist}`}
         >
             <Button
-                variant="outlined"
-                style={{ fontSize: 20 }}
+                className={styles.button}
                 onClick={() => router.push('/tracks')}
             >
                 К списку

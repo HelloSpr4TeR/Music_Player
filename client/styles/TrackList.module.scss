@@ -74,6 +74,7 @@ $button-color: #ffffff;
   margin-top: 15px !important;
   cursor: pointer !important;
   border: none !important;
+  text-transform: none !important;
   transition: background-color 0.3s !important;
 
   &:hover {
@@ -88,9 +89,8 @@ $button-color: #ffffff;
   }
 
   .header {
-    flex-direction: column;
+    flex-direction: column !important;
     gap: 8px;
-    align-items: flex-start;
   }
 
   .searchField {
