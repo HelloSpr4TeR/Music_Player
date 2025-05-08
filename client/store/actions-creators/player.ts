@@ -29,3 +29,9 @@ export const setPlaylist = (payload: ITrack[]): PlayerAction => {
 export const playNextTrack = (): PlayerAction => {
     return { type: PlayerActionTypes.PLAY_NEXT };
 }
+export const playNextRandomTrack = (): PlayerAction => {
+    return { type: PlayerActionTypes.PLAY_NEXT_RANDOM };
+};
+export const setShuffleMode = (payload: boolean): PlayerAction => {
+    return { type: PlayerActionTypes.SET_SHUFFLE_MODE, payload };
+};

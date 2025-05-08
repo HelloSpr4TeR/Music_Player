@@ -12,8 +12,9 @@ import { useMediaQuery } from '@mui/material';
 let audio;
 
 const Player = () => {
-  const { pause, volume, active, duration, currentTime } = useTypedSelector(state => state.player)
-  const { pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack, clearActiveTrack, playNextTrack } = useActions()
+  const { pause, volume, active, duration, currentTime, isShuffle } = useTypedSelector(state => state.player)
+  const { pauseTrack, playTrack, setVolume, setCurrentTime, setDuration,
+    setActiveTrack, clearActiveTrack, playNextTrack, playNextRandomTrack } = useActions()
 
   const isSmallScreen = useMediaQuery('(max-width:600px)');
 
@@ -51,8 +52,12 @@ const Player = () => {
       };
 
       audio.onended = () => {
-        playNextTrack();
-      };
+        if (isShuffle) {
+          playNextRandomTrack();
+        } else {
+          playNextTrack();
+        }
+      }
     }
   };
 

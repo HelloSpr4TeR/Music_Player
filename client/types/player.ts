@@ -7,7 +7,8 @@ export interface PlayerState {
     duration: number;
     currentTime: number;
     pause: boolean;
-    playlist: ITrack[]; // ➕ Новый ключ
+    playlist: ITrack[];
+    isShuffle: boolean;
 }
 
 export enum PlayerActionTypes {
@@ -18,8 +19,10 @@ export enum PlayerActionTypes {
     SET_CURRENT_TIME = "SET_CURRENT_TIME",
     SET_VOLUME = "SET_VOLUME",
     CLEAR_ACTIVE = "CLEAR_ACTIVE",
-    SET_PLAYLIST = 'SET_PLAYLIST', // ➕ Новый тип действия
-    PLAY_NEXT = 'PLAY_NEXT', // ➕ Новый тип действия
+    SET_PLAYLIST = 'SET_PLAYLIST',
+    PLAY_NEXT = 'PLAY_NEXT',
+    PLAY_NEXT_RANDOM = "PLAY_NEXT_RANDOM",
+    SET_SHUFFLE_MODE = "SET_SHUFFLE_MODE",
 }
 
 interface ClearActiveAction {
@@ -51,9 +54,15 @@ interface SetPlaylistAction {
     type: PlayerActionTypes.SET_PLAYLIST;
     payload: ITrack[];
 }
-
 interface PlayNextAction {
     type: PlayerActionTypes.PLAY_NEXT;
+}
+interface PlayNextRandomAction {
+    type: PlayerActionTypes.PLAY_NEXT_RANDOM;
+}
+interface SetShuffleModeAction {
+    type: PlayerActionTypes.SET_SHUFFLE_MODE;
+    payload: boolean;
 }
 
 export type PlayerAction =
@@ -65,4 +74,6 @@ export type PlayerAction =
     | SetCurrentTimeAction
     | ClearActiveAction
     | SetPlaylistAction
-    | PlayNextAction;
+    | PlayNextAction
+    | PlayNextRandomAction
+    | SetShuffleModeAction;
