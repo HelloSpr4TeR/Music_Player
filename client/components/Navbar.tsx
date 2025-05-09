@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { AppBar, Box, CssBaseline, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useRouter } from 'next/router';
@@ -6,18 +6,27 @@ import SidebarDrawer from './SidebarDrawer';
 import { menuItems } from './menuItems';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import ReplayIcon from '@mui/icons-material/Replay';
 import { useActions } from '../hooks/useActions';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import styles from '../styles/Navbar.module.scss'
-
+import { playPreviousTrack } from '@/store/actions-creators/player';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [mode, setMode] = useState<'shuffle' | 'repeat' | 'repeatTrack'>('repeat');
   const router = useRouter();
   const drawerRef = useRef<HTMLDivElement>(null);
 
-  const { setShuffleMode } = useActions();
+  const { setShuffleMode, setRepeatTrackMode, playNextTrack, playPreviousTrack } = useActions();
   const isShuffle = useTypedSelector(state => state.player.isShuffle);
+
+  useEffect(() => {
+    setShuffleMode(false);
+    setRepeatTrackMode(false);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -32,8 +41,24 @@ export default function Navbar() {
     };
   }, [open]);
 
-  const handleShuffleToggle = () => {
-    setShuffleMode(!isShuffle);
+  const handleModeToggle = () => {
+    if (mode === 'repeat') {
+      setMode('repeatTrack');
+      setRepeatTrackMode(true);
+    } else if (mode === 'repeatTrack') {
+      setMode('shuffle');
+      setRepeatTrackMode(false);
+      setShuffleMode(true);
+    } else {
+      setMode('repeat');
+      setShuffleMode(false);
+    }
+  };
+
+  const getIcon = () => {
+    if (mode === 'shuffle') return <ShuffleIcon />;
+    if (mode === 'repeat') return <RepeatIcon />;
+    return <ReplayIcon />;
   };
 
   return (
@@ -63,9 +88,17 @@ export default function Navbar() {
           >
             SoundNest 🎧
           </Typography>
-          <IconButton onClick={handleShuffleToggle} className={styles.shuffle}>
-            {isShuffle ? <ShuffleIcon /> : <RepeatIcon />}
-          </IconButton>
+          <div className={styles.shuffle}>
+            <IconButton onClick={playPreviousTrack}>
+              <SkipPreviousIcon />
+            </IconButton>
+            <IconButton onClick={playNextTrack}>
+              <SkipNextIcon />
+            </IconButton>
+            <IconButton onClick={handleModeToggle}>
+              {getIcon()}
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
       <SidebarDrawer

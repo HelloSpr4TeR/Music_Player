@@ -9,6 +9,7 @@ export interface PlayerState {
     pause: boolean;
     playlist: ITrack[];
     isShuffle: boolean;
+    isRepeatTrack: boolean;
 }
 
 export enum PlayerActionTypes {
@@ -23,6 +24,8 @@ export enum PlayerActionTypes {
     PLAY_NEXT = 'PLAY_NEXT',
     PLAY_NEXT_RANDOM = "PLAY_NEXT_RANDOM",
     SET_SHUFFLE_MODE = "SET_SHUFFLE_MODE",
+    SET_REPEAT_TRACK_MODE = "SET_REPEAT_TRACK_MODE",
+    PLAY_PREVIOUS = "PLAY_PREVIOUS",
 }
 
 interface ClearActiveAction {
@@ -64,6 +67,13 @@ interface SetShuffleModeAction {
     type: PlayerActionTypes.SET_SHUFFLE_MODE;
     payload: boolean;
 }
+interface SetRepeatTrackModeAction {
+    type: PlayerActionTypes.SET_REPEAT_TRACK_MODE;
+    payload: boolean;
+}
+interface PlayPreviousAction {
+    type: PlayerActionTypes.PLAY_PREVIOUS;
+}
 
 export type PlayerAction =
     PlayAction
@@ -74,6 +84,8 @@ export type PlayerAction =
     | SetCurrentTimeAction
     | ClearActiveAction
     | SetPlaylistAction
+    | PlayPreviousAction
     | PlayNextAction
     | PlayNextRandomAction
-    | SetShuffleModeAction;
+    | SetShuffleModeAction
+    | SetRepeatTrackModeAction

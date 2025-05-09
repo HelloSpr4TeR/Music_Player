@@ -8,6 +8,7 @@ const initialState: PlayerState = {
   pause: true,
   playlist: [],
   isShuffle: false,
+  isRepeatTrack: false,
 };
 
 export const playerReducer = (
@@ -27,6 +28,9 @@ export const playerReducer = (
       return { ...state, isShuffle: action.payload };
     case PlayerActionTypes.SET_DURATION:
       return { ...state, duration: action.payload };
+    case PlayerActionTypes.SET_REPEAT_TRACK_MODE: {
+      return { ...state, isRepeatTrack: action.payload };
+    }
     case PlayerActionTypes.SET_ACTIVE:
       return {
         ...state,
@@ -54,6 +58,26 @@ export const playerReducer = (
         return {
           ...state,
           active: nextTrack,
+          currentTime: 0,
+          duration: 0,
+          pause: false,
+        };
+      }
+      return {
+        ...state,
+        pause: true,
+      };
+    }
+    case PlayerActionTypes.PLAY_PREVIOUS: {
+      if (!state.active || !state.playlist.length) return state;
+      const currentIndex = state.playlist.findIndex(
+        (track) => track._id === state.active!._id
+      );
+      const prevTrack = state.playlist[currentIndex - 1];
+      if (prevTrack) {
+        return {
+          ...state,
+          active: prevTrack,
           currentTime: 0,
           duration: 0,
           pause: false,

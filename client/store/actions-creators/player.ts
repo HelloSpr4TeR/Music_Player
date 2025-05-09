@@ -35,3 +35,9 @@ export const playNextRandomTrack = (): PlayerAction => {
 export const setShuffleMode = (payload: boolean): PlayerAction => {
     return { type: PlayerActionTypes.SET_SHUFFLE_MODE, payload };
 };
+export const setRepeatTrackMode = (payload: boolean): PlayerAction => {
+    return { type: PlayerActionTypes.SET_REPEAT_TRACK_MODE, payload };
+};
+export const playPreviousTrack = (): PlayerAction => {
+    return { type: PlayerActionTypes.PLAY_PREVIOUS };
+};

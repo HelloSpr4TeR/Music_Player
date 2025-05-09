@@ -12,7 +12,7 @@ import { useMediaQuery } from '@mui/material';
 let audio;
 
 const Player = () => {
-  const { pause, volume, active, duration, currentTime, isShuffle } = useTypedSelector(state => state.player)
+  const { pause, volume, active, duration, currentTime, isShuffle, isRepeatTrack } = useTypedSelector(state => state.player)
   const { pauseTrack, playTrack, setVolume, setCurrentTime, setDuration,
     setActiveTrack, clearActiveTrack, playNextTrack, playNextRandomTrack } = useActions()
 
@@ -54,6 +54,10 @@ const Player = () => {
       audio.onended = () => {
         if (isShuffle) {
           playNextRandomTrack();
+        } else if (isRepeatTrack) {
+          audio.play().catch((err) => {
+            console.error("Playback error:", err);
+          });
         } else {
           playNextTrack();
         }
