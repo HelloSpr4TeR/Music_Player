@@ -12,7 +12,7 @@ import ReplayIcon from '@mui/icons-material/Replay';
 import { useActions } from '../hooks/useActions';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import styles from '../styles/Navbar.module.scss'
-import { playPreviousTrack } from '@/store/actions-creators/player';
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -65,7 +65,7 @@ export default function Navbar() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar className={styles.toolbar}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
