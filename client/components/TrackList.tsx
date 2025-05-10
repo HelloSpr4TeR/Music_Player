@@ -3,7 +3,7 @@ import { Box, Grid2 } from "@mui/material"
 import TrackItem from "./TrackItem"
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { useEffect } from 'react'
-import { useActions } from '@/hooks/useActions'
+import { useActions } from '@/hooks/useDispatch'
 
 interface TrackListProps {
     tracks: ITrack[];

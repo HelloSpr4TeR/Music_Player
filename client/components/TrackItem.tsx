@@ -3,7 +3,7 @@ import { Card, Grid2, IconButton } from '@mui/material';
 import React, { useState } from 'react'
 import styles from '../styles/TrackItem.module.scss'
 import { useRouter } from 'next/router';
-import { useActions } from '@/hooks/useActions';
+import { useActions } from '@/hooks/useDispatch';
 import { FaPauseCircle, FaPlayCircle } from 'react-icons/fa';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import clsx from 'clsx';

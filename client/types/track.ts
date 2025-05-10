@@ -4,6 +4,11 @@ export interface IComment {
     text: string
 }
 
+export interface Track {
+    id: string
+    name: string
+}
+
 export interface ITrack {
     _id: string;
     name: string;
@@ -18,6 +23,7 @@ export interface ITrack {
 export interface TrackState {
     tracks: ITrack[];
     error: string;
+    loading: boolean
 }
 
 export enum TrackActionTypes {

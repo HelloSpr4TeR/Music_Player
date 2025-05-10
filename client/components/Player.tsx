@@ -3,7 +3,7 @@ import { Grid2, IconButton } from '@mui/material'
 import React, { useEffect } from 'react'
 import styles from '../styles/Player.module.scss'
 import TrackProgress from './TrackProgress'
-import { useActions } from '@/hooks/useActions'
+import { useActions } from '@/hooks/useDispatch'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import VolumeProgress from './VolumeProgress'
 import { useMediaQuery } from '@mui/material';

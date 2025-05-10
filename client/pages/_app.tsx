@@ -1,4 +1,4 @@
-import { wrapper } from "@/store";
+import { wrapper } from "@/store/store";
 import { AppProps } from "next/app";
 import { FC } from "react";
 

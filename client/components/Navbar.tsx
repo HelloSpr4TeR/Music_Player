@@ -9,7 +9,7 @@ import ShuffleIcon from '@mui/icons-material/Shuffle';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import RepeatOneIcon from '@mui/icons-material/RepeatOne';
-import { useActions } from '../hooks/useActions';
+import { useActions } from '../hooks/useDispatch';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import styles from '../styles/Navbar.module.scss'
 

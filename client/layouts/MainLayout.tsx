@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Player from '@/components/Player';
 import { Container } from '@mui/material';
 import Head from 'next/head';
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 
 interface MainLayoutProps {
